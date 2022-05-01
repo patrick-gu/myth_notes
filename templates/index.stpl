@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Myth Notes</title>
+        <meta name="description" content="A note taking app built with Myth" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="flex h-screen items-center justify-center p-4">
+            <div class="space-y-4">
+                <h1 class="text-4xl">Myth Notes</h1>
+                <p class="text-xl">
+                    A note taking app built with
+                    <a
+                        href="https://github.com/patrick-gu/myth"
+                        class="text-blue-500 active:text-red-500 underline"
+                        target="_blank"
+                        rel="noreferrer"
+                        >Myth</a
+                    >
+                </p>
+                <div>
+                    <a
+                        href="/signup"
+                        class="inline-block rounded bg-blue-500 px-6 py-2 text-white"
+                        >Sign up</a
+                    >
+                    <a
+                        href="/login"
+                        class="inline-block rounded bg-blue-400 px-6 py-2 text-white"
+                        >Login</a
+                    >
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

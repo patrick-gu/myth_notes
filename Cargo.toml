@@ -1,0 +1,33 @@
+[package]
+name = "myth_notes"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Myth
+myth = { git = "https://github.com/patrick-gu/myth" }
+
+# Runtime
+tokio = { version = "1.18", features = ["macros", "rt-multi-thread"] }
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3.3", features = ["env-filter"] }
+
+# Templating
+sailfish = "0.4.0"
+
+# Deserialization
+serde = { version = "1", features = ["derive"] }
+
+# Database
+sqlx = { version = "0.5", features = ["runtime-tokio-rustls", "offline", "sqlite"] }
+
+# Password hashing
+argon2 = { version = "0.3.4", features = ["std"] }
+
+# Random numbers
+rand = "0.8.5"
+
+# UUIDs
+uuid = "1.0.0"

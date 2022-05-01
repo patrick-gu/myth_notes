@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Your notes | Myth Notes</title>
+        <meta name="description" content="Your Myth Notes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="p-4 space-y-4">
+            <a href="/account" class="text-blue-500 active:text-red-500 underline">Your account</a>
+            <h1 class="text-4xl">Your notes</h1>
+            <form action="/notes" method="POST">
+                <input type="submit" value="Create new note" class="cursor-pointer rounded bg-blue-500 px-6 py-2 text-white" />
+            </form>
+            <div class="flex flex-wrap gap-2">
+                <% for note in notes {%>
+                    <a href="/notes/<%= note.id %>" class="block rounded border px-6 py-2 text-blue-500 underline active:text-red-500">
+                        <% if note.title.is_empty() { %>
+                            <i>Untitled note</i>
+                        <% } else { %>
+                            <%= note.title %>
+                        <% } %>
+                    </a>
+                <% } %>
+            </div>
+        </main>
+    </body>
+</html>

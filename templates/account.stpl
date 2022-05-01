@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Account | Myth Notes</title>
+        <meta name="description" content="Your Myth Notes account" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="space-y-4 p-4">
+            <a href="/notes" class="text-blue-500 underline active:text-red-500">Back to notes</a>
+            <h1 class="text-4xl">Your account</h1>
+            <div class="space-y-2">
+                <h2 class="text-2xl">Info</h2>
+                <p>Username: <%= username %></p>
+                <p>User ID: <%= id %></p>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl">Sessions</h2>
+                <div class="flex gap-2">
+                <form action="/account/logout" method="POST">
+                    <input type="submit" value="Log out" class="cursor-pointer rounded bg-blue-500 py-2 px-6 text-white" />
+                </form>
+                <form action="/account/logout/all" method="POST">
+                    <input type="submit" value="Log out of all sessions" class="cursor-pointer rounded bg-blue-500 py-2 px-6 text-white" />
+                </form>
+                </div>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl">Password</h2>
+                <form action="/account/password" method="POST" class="flex flex-wrap gap-2">
+                    <input type="password" name="current_password" placeholder="Current password" required class="rounded border px-6 py-1.5" />
+                    <input type="password" name="new_password" placeholder="New password" required class="rounded border px-6 py-1.5" />
+                    <input type="submit" value="Change password" class="cursor-pointer rounded bg-blue-500 py-2 px-6 text-white" />
+                </form>
+                <% match update_password_result {
+                    Some(Ok(())) => { %>
+                        <p class="inline-block rounded border border-green-500 bg-green-200 py-2 px-6">
+                            Successfully changed password.
+                        </p>
+                    <% }
+                    Some(Err(UpdatePasswordError::BadNew)) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            New password not strong enough.
+                        </p>
+                    <% }
+                    Some(Err(UpdatePasswordError::WrongCurrent)) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            Wrong current password.
+                        </p>
+                    <% }
+                    Some(Err(UpdatePasswordError::Same)) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            New password must be different from current.
+                        </p>
+                    <% }
+                    None => (),
+                } %>
+            </div>
+            <div class="space-y-2">
+                <h2 class="text-2xl">Delete account</h2>
+                <p>This will delete your account and all of your notes permanently.</p>
+                <form action="/account/delete" method="POST" class="flex flex-wrap gap-2">
+                    <input type="password" name="password" placeholder="Password" required class="rounded border px-6 py-1.5" />
+                    <input type="submit" value="Delete account" class="cursor-pointer rounded bg-red-500 py-2 px-6 text-white" />
+                </form>
+                <% match delete_account_error {
+                    Some(DeleteAccountError::WrongPassword) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            Wrong password.
+                        </p>
+                    <% }
+                    None => (),
+                } %>
+            </div>
+        </main>
+    </body>
+</html>

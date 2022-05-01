@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sign up | Myth Notes</title>
+        <meta name="description" content="Sign up to Myth Notes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="flex h-screen items-center justify-center p-4">
+            <div class="space-y-4">
+                <a href="/" class="text-blue-500 underline active:text-red-500">Return to home</a>
+                <h1 class="text-4xl">Sign up to Myth Notes</h1>
+                <form action="/signup" method="POST" class="space-y-2">
+                    <input
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                        required
+                        class="block px-6 py-1.5 border rounded"
+                    />
+                    <input
+                        type="password"
+                        name="password"
+                        placeholder="Password"
+                        required
+                        class="block px-6 py-1.5 border rounded"
+                    />
+                    <input
+                        type="submit"
+                        value="Sign up"
+                        class="block cursor-pointer rounded bg-blue-500 px-6 py-2 text-white"
+                    />
+                </form>
+                <% match error {
+                    Some(SignupError::BadUsername) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            Bad username.
+                        </p>
+                    <% }
+                    Some(SignupError::BadPassword) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            Password not strong enough.
+                        </p>
+                    <% }
+                    Some(SignupError::UsernameAlreadyExists) => { %>
+                        <p class="inline-block rounded border border-red-500 bg-red-200 py-2 px-6">
+                            Username already exists.
+                        </p>
+                    <% }
+                    None => (),
+                } %>
+                <p>
+                    Already have an account?
+                    <a
+                        href="/login"
+                        class="text-blue-500 underline active:text-red-500"
+                        >Log in here</a
+                    >
+                </p>
+            </div>
+        </main>
+    </body>
+</html>

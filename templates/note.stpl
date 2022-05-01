@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Note <%= note.title %> | Myth Notes</title>
+        <meta name="description" content="A note on Myth Notes" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <main class="space-y-4 p-4">
+            <a href="/notes" class="text-blue-500 active:text-red-500 underline">Back to all notes</a>
+            <h1 class="text-4xl">Note</h1>
+            <form action="/notes/<%= id %>" method="POST" class="space-y-2">
+                <input type="text" name="title" placeholder="Title" value="<%= note.title %>" class="block w-full rounded border px-2 py-1.5" />
+                <textarea name="data" placeholder="Write here..." class="block h-60 w-full rounded border px-2 py-1.5"><%= note.data %></textarea>
+                <input type="submit" value="Save" class="block cursor-pointer rounded bg-blue-500 px-6 py-2 text-white" />
+            </form>
+            <form action="/notes/<%= id %>/delete" method="POST">
+                <input type="submit" value="Delete note" class="cursor-pointer rounded bg-red-500 py-2 px-6 text-white" />
+            </form>
+        </main>
+    </body>
+</html>

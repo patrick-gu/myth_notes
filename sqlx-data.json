@@ -1,0 +1,219 @@
+{
+  "db": "SQLite",
+  "169b25c8dacbd034f88f144b41409e5293e0301aa491a008b1378d06d247a29f": {
+    "query": "select id, password_hash from users where username = ?;",
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "password_hash",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  },
+  "21908e86531016a279f25d3d56d942c07b298da5f2a04764969fcfb752deb47c": {
+    "query": "select id, title from notes where user_id = ? order by updated_at desc;",
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "title",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  },
+  "2c2776ea43b41110503bfb018e4de8607fdfd3efd9cf86f7dc96c4078e65aedd": {
+    "query": "delete from users where id = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": []
+    }
+  },
+  "409c721fd5b1f08b6fb4700df37a5eb6104edaf68f4792610264812059a1f18c": {
+    "query": "update sessions set expires_at = min(expires_at, ?) where user_id = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": []
+    }
+  },
+  "4e358bceff5c2b3156eba28b113ed1b2b97b09f4ee14727b560d9dc09e2fbd22": {
+    "query": "select password_hash from users where id = ?;",
+    "describe": {
+      "columns": [
+        {
+          "name": "password_hash",
+          "ordinal": 0,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false
+      ]
+    }
+  },
+  "592a397bc1bf88289d1168286e17fac8d13810e44f1fed0395cf3c25842b14e8": {
+    "query": "delete from notes where id = ? and user_id = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": []
+    }
+  },
+  "5baf5016c1632c338de5f9832e78ea5ff4aec3527002d3c76e5e99c511601cde": {
+    "query": "insert into notes (id, user_id, updated_at) values (?, ?, ?);",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 3
+      },
+      "nullable": []
+    }
+  },
+  "5f576be753baace066ac411f990be7bb8504046cf77a2d2aa432dc640f3c97ab": {
+    "query": "update users set password_hash = ? where id = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": []
+    }
+  },
+  "6202bc3ef832822cf29e26c70a62509d66d89d67787c02aaba52fae925962f19": {
+    "query": "update notes set title = ?, data = ?, updated_at = ? where id = ? and user_id = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 5
+      },
+      "nullable": []
+    }
+  },
+  "8c97f9e7d23a5af0574ba44dfd2bc9f156cff4348087c832e193f14e6c1b7e23": {
+    "query": "select user_id from sessions where value = ? and expires_at > ?;",
+    "describe": {
+      "columns": [
+        {
+          "name": "user_id",
+          "ordinal": 0,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": [
+        false
+      ]
+    }
+  },
+  "936daf8d869b91c172ba74bac146973c469f658d481703a1127ab042daf6179d": {
+    "query": "insert into users (id, username, password_hash) values (?, ?, ?); insert into sessions (value, user_id, expires_at) values (?, ?, ?); insert into notes (id, user_id, title, data, updated_at) values (?, ?, 'Welcome to Myth Notes', 'This is an example note.', ?);",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 9
+      },
+      "nullable": []
+    }
+  },
+  "9a4d882ad4c67e60f56c0550a140019962cf1d87bf53f165188bb1bd0cf3ac6f": {
+    "query": "select username from users where id = ?;",
+    "describe": {
+      "columns": [
+        {
+          "name": "username",
+          "ordinal": 0,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 1
+      },
+      "nullable": [
+        false
+      ]
+    }
+  },
+  "aed1f307bb068a9d5dc30b51986e0338084822677f1fedaebdd28f628b885ccd": {
+    "query": "insert into sessions (value, user_id, expires_at) values (?, ?, ?);",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 3
+      },
+      "nullable": []
+    }
+  },
+  "bfc8471bc12ca99b1fdc521cd5e1a2b37916a86eda0a7cf534b3eb2e4e5ca3f4": {
+    "query": "update sessions set expires_at = ? where value = ?;",
+    "describe": {
+      "columns": [],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": []
+    }
+  },
+  "e27621b452072203c798205e884279752dae545c2cab3345d90848ee64ae1009": {
+    "query": "select title, data from notes where id = ? and user_id = ?;",
+    "describe": {
+      "columns": [
+        {
+          "name": "title",
+          "ordinal": 0,
+          "type_info": "Text"
+        },
+        {
+          "name": "data",
+          "ordinal": 1,
+          "type_info": "Text"
+        }
+      ],
+      "parameters": {
+        "Right": 2
+      },
+      "nullable": [
+        false,
+        false
+      ]
+    }
+  }
+}
